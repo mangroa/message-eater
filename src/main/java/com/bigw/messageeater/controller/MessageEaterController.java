@@ -1,8 +1,6 @@
 package com.bigw.messageeater.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -28,6 +26,7 @@ public class MessageEaterController {
         Path filePath = Path.of("message.log");
         try (BufferedWriter writer = Files.newBufferedWriter(filePath, StandardOpenOption.CREATE, StandardOpenOption.APPEND)) {
             writer.write(message);
+            writer.newLine();
             writer.newLine();
             log.info("Message saved to file: {}", filePath.toAbsolutePath());
         } catch (IOException e) {
